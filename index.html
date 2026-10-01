@@ -1,67 +1,434 @@
-<!DOCTYPE html><html lang="en"><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Milo — Executive Chief of Staff</title>  <script src="https://cdn.tailwindcss.com"></script>  <script src="https://unpkg.com/lucide@latest"></script>  <style>    * { box-sizing: border-box; margin: 0; padding: 0; }    body {      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;      background-color: #080c14;      color: #f1f5f9;      height: 100vh;      overflow: hidden;      display: flex;    }    aside {      width: 280px;      min-width: 280px;      background: #0d131f;      border-right: 1px solid #1e293b;      display: flex;      flex-direction: column;      justify-content: space-between;      padding: 1.5rem 1rem;      height: 100vh;      overflow-y: auto;    }    main {      flex: 1;      height: 100vh;      overflow-y: auto;      display: flex;      flex-direction: column;    }    .card {      background: #111827;      border: 1px solid #1f293d;      border-radius: 0.75rem;      padding: 1.25rem;    }    .nav-btn {      display: flex;      align-items: center;      gap: 0.75rem;      width: 100%;      padding: 0.65rem 0.85rem;      border-radius: 0.5rem;      font-size: 0.875rem;      color: #94a3b8;      background: transparent;      border: 1px solid transparent;      cursor: pointer;      text-align: left;      transition: all 0.15s ease;    }    .nav-btn:hover { background: #1e293b; color: #f8fafc; }    .nav-btn.active {      background: rgba(59, 130, 246, 0.15);      color: #60a5fa;      border-color: rgba(59, 130, 246, 0.3);      font-weight: 600;    }    .tab-section { display: none; }    .tab-section.active { display: block; }    .grid-3 {      display: grid;      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));      gap: 1rem;    }    .badge {      display: inline-flex;      align-items: center;      padding: 0.2rem 0.5rem;      border-radius: 0.375rem;      font-size: 0.7rem;      font-weight: 700;      text-transform: uppercase;      letter-spacing: 0.05em;    }    button, input, textarea { font-family: inherit; }  </style></head><body>
-  <!-- Sidebar -->  <aside>    <div>      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; padding: 0 0.5rem;">        <div style="width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #d97706, #2563eb); display: flex; align-items: center; justify-content: center; font-weight: 800; color: white; font-size: 1.1rem;">M</div>        <div>          <div style="font-weight: 700; font-size: 1rem; color: #fff; display: flex; align-items: center; gap: 0.4rem;">            MILO <span class="badge" style="background: rgba(217,119,6,0.2); color: #fbbf24; border: 1px solid rgba(217,119,6,0.3);">C-Suite</span>          </div>          <div style="font-size: 0.75rem; color: #64748b;">Chief of Staff OS</div>        </div>      </div>
-      <nav style="display: flex; flex-direction: column; gap: 0.4rem;">        <button onclick="showTab('flight-deck', this)" class="nav-btn active">          <i data-lucide="layout-dashboard" style="width: 16px; height: 16px;"></i>          <span>Flight Deck</span>        </button>        <button onclick="showTab('email-hub', this)" class="nav-btn">          <i data-lucide="mail" style="width: 16px; height: 16px;"></i>          <span>Email Command Hub</span>        </button>        <button onclick="showTab('calendar-hub', this)" class="nav-btn">          <i data-lucide="calendar" style="width: 16px; height: 16px;"></i>          <span>Calendar & Alarms</span>        </button>        <button onclick="showTab('voice-notes', this)" class="nav-btn">          <i data-lucide="mic" style="width: 16px; height: 16px;"></i>          <span>Voice & CEO Directives</span>        </button>        <button onclick="showTab('creator-studio', this)" class="nav-btn">          <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>          <span>Creator & Board Studio</span>        </button>        <button onclick="showTab('integrations', this)" class="nav-btn">          <i data-lucide="smartphone" style="width: 16px; height: 16px;"></i>          <span>WhatsApp & Sync</span>        </button>      </nav>    </div>
-    <div style="border-top: 1px solid #1e293b; padding-top: 1rem;">      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.75rem;">        <span style="display: flex; align-items: center; gap: 0.4rem;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></span> WhatsApp Status</span>        <span style="color: #34d399; font-weight: 600;">Active</span>      </div>      <div class="card" style="padding: 0.75rem; background: #070a10;">        <div style="font-size: 0.75rem; font-weight: 700; color: #e2e8f0; margin-bottom: 0.25rem;">Autonomy Guard Enabled</div>        <div style="font-size: 0.7rem; color: #64748b; line-height: 1.3;">No CapEx wires or client emails leave without 1-touch sign-off.</div>      </div>    </div>  </aside>
-  <!-- Main View -->  <main>    <!-- Top Header -->    <header style="height: 60px; min-height: 60px; border-bottom: 1px solid #1e293b; background: rgba(13,19,31,0.8); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; position: sticky; top: 0; z-index: 10;">      <div class="badge" style="background: rgba(59,130,246,0.1); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3);">        Enterprise Tier · Managing Director Deck      </div>      <div style="display: flex; align-items: center; gap: 1rem;">        <button onclick="playTone(880)" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; border-radius: 0.375rem; background: #1e293b; color: #cbd5e1; border: none; cursor: pointer;">          Test Chime        </button>        <div style="display: flex; align-items: center; gap: 0.6rem;">          <div style="width: 32px; height: 32px; border-radius: 50%; background: #1e293b; border: 1px solid #334155; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem; color: #fff;">MD</div>          <span style="font-size: 0.8rem; font-weight: 600; color: #cbd5e1;">Robin K.</span>        </div>      </div>    </header>
-    <!-- Page Content Area -->    <div style="padding: 2rem; max-width: 1200px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
-      <!-- 1. FLIGHT DECK -->      <section id="flight-deck" class="tab-section active">        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">          <div>            <h1 style="font-size: 1.6rem; font-weight: 800; color: #fff;">Executive Briefing</h1>            <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.25rem;">Autonomous synthesis across Gmail, Outlook & Calendar pipelines.</p>          </div>          <div class="badge" style="background: rgba(16,185,129,0.1); color: #34d399; border: 1px solid rgba(16,185,129,0.3); font-size: 0.8rem; padding: 0.4rem 0.8rem;">            Staged Deal Pipeline: $14.2M          </div>        </div>
-        <div class="grid-3" style="margin-bottom: 1.5rem;">          <div class="card">            <div style="font-size: 0.7rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 0.5rem;">VIP Radar</div>            <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">3 High-Stake Inbounds</div>            <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.35rem;">SoftBank VP, BlackRock M&A, Forbes Editor</div>          </div>          <div class="card">            <div style="font-size: 0.7rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 0.5rem;">Buffer Defense</div>            <div style="font-size: 1.5rem; font-weight: 800; color: #60a5fa;">100% Protected</div>            <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.35rem;">45m cognitive resets inserted between all board meetings</div>          </div>          <div class="card">            <div style="font-size: 0.7rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 0.5rem;">Directives In-Flight</div>            <div style="font-size: 1.5rem; font-weight: 800; color: #34d399;">11 of 12</div>            <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.35rem;">Tasks acknowledged by CFO & COO with deadlines</div>          </div>        </div>
-        <div class="card">          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">            <h3 style="font-size: 0.95rem; font-weight: 700; color: #fff;">Staged Decision Stream (Action Required)</h3>            <span style="font-size: 0.75rem; color: #64748b;">Milo awaits your 1-touch sign-off</span>          </div>
-          <div style="display: flex; flex-direction: column; gap: 0.75rem;">            <!-- Action Item 1 -->            <div id="dec-1" style="background: #080c14; border: 1px solid #1e293b; border-radius: 0.5rem; padding: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;">              <div>                <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.25rem;">                  <span class="badge" style="background: rgba(239,68,68,0.2); color: #f87171;">M&A Lead</span>                  <span style="font-size: 0.75rem; color: #64748b;">Jonathan Vance (Apex Global)</span>                </div>                <div style="font-weight: 600; font-size: 0.85rem; color: #fff;">Proposed $8.5M Divestiture preliminary terms</div>                <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.2rem;">Milo drafted: NDA acknowledgment and requested formal preliminary deck before calendar booking.</div>              </div>              <div style="display: flex; gap: 0.5rem; shrink-0;">                <button onclick="resolveAction('dec-1', 'Authorized & sent to Jonathan Vance')" style="padding: 0.4rem 0.8rem; background: #059669; color: white; border: none; border-radius: 0.375rem; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Authorize & Send</button>                <button onclick="resolveAction('dec-1', 'Delegated to CFO')" style="padding: 0.4rem 0.8rem; background: #1e293b; color: #cbd5e1; border: none; border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer;">Delegate CFO</button>              </div>            </div>
-            <!-- Action Item 2 -->            <div id="dec-2" style="background: #080c14; border: 1px solid #1e293b; border-radius: 0.5rem; padding: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;">              <div>                <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.25rem;">                  <span class="badge" style="background: rgba(217,119,6,0.2); color: #fbbf24;">CapEx Authorization</span>                  <span style="font-size: 0.75rem; color: #64748b;">Sarah Lin (Head of Cloud Infra)</span>                </div>                <div style="font-weight: 600; font-size: 0.85rem; color: #fff;">$145,000 Q3 GPU Cluster Reservation Wire</div>                <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.2rem;">Budget check verified against 2026 AI Compute Pool reserve.</div>              </div>              <div style="display: flex; gap: 0.5rem; shrink-0;">                <button onclick="resolveAction('dec-2', 'Wire authorization released')" style="padding: 0.4rem 0.8rem; background: #059669; color: white; border: none; border-radius: 0.375rem; font-size: 0.75rem; font-weight: 600; cursor: pointer;">Authorize Wire</button>                <button onclick="resolveAction('dec-2', 'Delegated to VP Finance')" style="padding: 0.4rem 0.8rem; background: #1e293b; color: #cbd5e1; border: none; border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer;">Delegate VP</button>              </div>            </div>          </div>        </div>      </section>
-      <!-- 2. EMAIL HUB -->      <section id="email-hub" class="tab-section">        <h1 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">Executive Email Hub</h1>        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Gmail & Microsoft Outlook cross-account triage with 4 calibrated tones.</p>                <div style="display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem;">          <div style="display: flex; flex-direction: column; gap: 0.75rem;">            <div class="card" onclick="loadEmail(1)" style="cursor: pointer;">              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 0.25rem;">                <span style="font-weight: 700; color: #fff;">David Sterling (Board Chair)</span>                <span style="color: #64748b;">10:14 AM</span>              </div>              <div style="font-size: 0.8rem; font-weight: 600; color: #e2e8f0; margin-bottom: 0.25rem;">Re: Preliminary Agenda Q4 Meeting</div>              <div style="font-size: 0.75rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Robin, are we presenting the revised gross margin expectations...</div>            </div>
-            <div class="card" onclick="loadEmail(2)" style="cursor: pointer;">              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 0.25rem;">                <span style="font-weight: 700; color: #fff;">Elena Rostova (Partner, Horizon VC)</span>                <span style="color: #64748b;">08:42 AM</span>              </div>              <div style="font-size: 0.8rem; font-weight: 600; color: #e2e8f0; margin-bottom: 0.25rem;">Series B Syndicate Allocation</div>              <div style="font-size: 0.75rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Can you commit 15 mins this Thursday to review our terms...</div>            </div>          </div>
-          <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 0.75rem;">              <span style="font-weight: 700; font-size: 0.9rem; color: #fff;">AI Executive Draft Studio</span>              <div style="display: flex; gap: 0.4rem;">                <button onclick="setTone(this)" style="padding: 0.25rem 0.6rem; font-size: 0.7rem; border-radius: 0.25rem; background: #2563eb; color: #fff; border: none; cursor: pointer;">Managing Director</button>                <button onclick="setTone(this)" style="padding: 0.25rem 0.6rem; font-size: 0.7rem; border-radius: 0.25rem; background: #1e293b; color: #94a3b8; border: none; cursor: pointer;">Firm & Guarded</button>                <button onclick="setTone(this)" style="padding: 0.25rem 0.6rem; font-size: 0.7rem; border-radius: 0.25rem; background: #1e293b; color: #94a3b8; border: none; cursor: pointer;">Brief (<2 sentences)</button>              </div>            </div>
-            <div>              <label style="font-size: 0.75rem; color: #64748b; font-weight: 600; display: block; margin-bottom: 0.35rem;">Recipient & Subject</label>              <input id="email-recip" style="width: 100%; background: #080c14; border: 1px solid #1e293b; border-radius: 0.375rem; padding: 0.5rem; font-size: 0.8rem; color: #fff;" value="david.sterling@boardholdings.com — Re: Preliminary Agenda Q4">            </div>
-            <div>              <label style="font-size: 0.75rem; color: #64748b; font-weight: 600; display: block; margin-bottom: 0.35rem;">Executive Synthesized Draft</label>              <textarea id="email-content" rows="7" style="width: 100%; background: #080c14; border: 1px solid #1e293b; border-radius: 0.375rem; padding: 0.75rem; font-size: 0.8rem; color: #e2e8f0; line-height: 1.5;">David,
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milo — Executive Chief of Staff</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #090d16;
+      color: #f1f5f9;
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+    aside {
+      width: 260px;
+      min-width: 260px;
+      background: #0f172a;
+      border-right: 1px solid #1e293b;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.25rem 0.85rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      padding-left: 0.5rem;
+    }
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #d97706, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #fff;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(217, 119, 6, 0.2);
+      color: #fbbf24;
+      border: 1px solid rgba(217, 119, 6, 0.3);
+    }
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .nav-btn {
+      display: block;
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #94a3b8;
+      background: transparent;
+      border: 1px solid transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+    .nav-btn:hover { background: #1e293b; color: #fff; }
+    .nav-btn.active {
+      background: rgba(37, 99, 235, 0.15);
+      border-color: rgba(37, 99, 235, 0.3);
+      color: #60a5fa;
+      font-weight: 700;
+    }
+    main {
+      flex: 1;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      height: 56px;
+      min-height: 56px;
+      border-bottom: 1px solid #1e293b;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+    }
+    .content-area {
+      padding: 1.5rem;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .tab-view { display: none; }
+    .tab-view.active { display: block; }
+    .btn-action {
+      padding: 0.4rem 0.85rem;
+      border-radius: 5px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: #2563eb; color: #fff; }
+    .btn-success { background: #059669; color: #fff; }
+    .btn-secondary { background: #1e293b; color: #cbd5e1; }
+    input, textarea {
+      font-family: inherit;
+      background: #080c14;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 0.6rem;
+      color: #fff;
+      font-size: 0.8rem;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left Sidebar -->
+  <aside>
+    <div>
+      <div class="brand">
+        <div class="brand-icon">M</div>
+        <div>
+          <div style="font-weight: 800; font-size: 0.95rem; color: #fff;">MILO <span class="badge">C-Suite</span></div>
+          <div style="font-size: 0.7rem; color: #64748b;">Chief of Staff OS</div>
+        </div>
+      </div>
+
+      <nav>
+        <button class="nav-btn active" onclick="tab('flight-deck', this)">Flight Deck</button>
+        <button class="nav-btn" onclick="tab('email-hub', this)">Email Command Hub</button>
+        <button class="nav-btn" onclick="tab('calendar-hub', this)">Calendar & Alarms</button>
+        <button class="nav-btn" onclick="tab('voice-notes', this)">Voice & Directives</button>
+        <button class="nav-btn" onclick="tab('creator-studio', this)">Creator & Board Studio</button>
+        <button class="nav-btn" onclick="tab('integrations', this)">WhatsApp & Gateway</button>
+      </nav>
+    </div>
+
+    <div class="card" style="padding: 0.75rem; background: #080c14;">
+      <div style="display:flex; justify-content:space-between; font-size:0.7rem; margin-bottom:0.35rem;">
+        <span style="color:#94a3b8;">WhatsApp Bridge</span>
+        <span style="color:#34d399; font-weight:700;">Active</span>
+      </div>
+      <div style="font-size:0.65rem; color:#64748b;">Autonomy Guard active. Human-in-the-loop signoff required.</div>
+    </div>
+  </aside>
+
+  <!-- Main View Area -->
+  <main>
+    <header>
+      <div style="font-size:0.75rem; color:#60a5fa; font-weight:600;">Enterprise Tier · Managing Director Deck</div>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <button onclick="playChime()" class="btn-action btn-secondary">🔔 Chime</button>
+        <div style="font-size:0.75rem; color:#cbd5e1; font-weight:600;">Robin K. (MD)</div>
+      </div>
+    </header>
+
+    <div class="content-area">
+
+      <!-- 1. FLIGHT DECK -->
+      <section id="flight-deck" class="tab-view active">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+          <div>
+            <h2 style="font-size:1.4rem; font-weight:800; color:#fff;">Executive Briefing</h2>
+            <div style="font-size:0.8rem; color:#64748b; margin-top:0.25rem;">Synthesized cross-pipeline briefing across your corporate ecosystem.</div>
+          </div>
+          <div style="background:rgba(5,150,105,0.15); border:1px solid rgba(5,150,105,0.3); color:#34d399; padding:0.35rem 0.75rem; border-radius:6px; font-size:0.75rem; font-weight:700;">
+            Pending Deal Pipeline: $14.2M
+          </div>
+        </div>
+
+        <div class="stats-row" style="margin-bottom:1.25rem;">
+          <div class="card">
+            <div style="font-size:0.7rem; font-weight:700; color:#64748b; text-transform:uppercase;">VIP Radar</div>
+            <div style="font-size:1.35rem; font-weight:800; color:#fff; margin-top:0.25rem;">3 Inbounds</div>
+            <div style="font-size:0.75rem; color:#94a3b8; margin-top:0.2rem;">SoftBank VP, BlackRock M&A, Forbes</div>
+          </div>
+          <div class="card">
+            <div style="font-size:0.7rem; font-weight:700; color:#64748b; text-transform:uppercase;">Buffer Defense</div>
+            <div style="font-size:1.35rem; font-weight:800; color:#60a5fa; margin-top:0.25rem;">100% Guarded</div>
+            <div style="font-size:0.75rem; color:#94a3b8; margin-top:0.2rem;">45m cognitive resets inserted between board calls</div>
+          </div>
+          <div class="card">
+            <div style="font-size:0.7rem; font-weight:700; color:#64748b; text-transform:uppercase;">Directives Active</div>
+            <div style="font-size:1.35rem; font-weight:800; color:#34d399; margin-top:0.25rem;">11 of 12</div>
+            <div style="font-size:0.75rem; color:#94a3b8; margin-top:0.2rem;">Tasks acknowledged with deadlines by CFO/COO</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-size:0.9rem; font-weight:700; color:#fff; margin-bottom:0.75rem;">Staged Human-in-the-Loop Actions</div>
+          
+          <div style="display:flex; flex-direction:column; gap:0.75rem;">
+            <div id="act-1" style="background:#080c14; border:1px solid #1e293b; border-radius:6px; padding:0.85rem; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-size:0.65rem; color:#f87171; font-weight:700; text-transform:uppercase;">M&A Acquisition Lead · Jonathan Vance (Apex)</div>
+                <div style="font-size:0.85rem; font-weight:700; color:#fff; margin:0.2rem 0;">Proposed $8.5M Divestiture preliminary terms</div>
+                <div style="font-size:0.75rem; color:#64748b;">Milo Draft: Signed mutual NDA acknowledgment & request preliminary valuation deck.</div>
+              </div>
+              <div style="display:flex; gap:0.5rem;">
+                <button onclick="dismiss('act-1', 'Approved and sent to Jonathan Vance.')" class="btn-action btn-success">Authorize & Send</button>
+                <button onclick="dismiss('act-1', 'Delegated to CFO.')" class="btn-action btn-secondary">Delegate CFO</button>
+              </div>
+            </div>
+
+            <div id="act-2" style="background:#080c14; border:1px solid #1e293b; border-radius:6px; padding:0.85rem; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-size:0.65rem; color:#fbbf24; font-weight:700; text-transform:uppercase;">CapEx Approval · Sarah Lin (Infra)</div>
+                <div style="font-size:0.85rem; font-weight:700; color:#fff; margin:0.2rem 0;">$145,000 Q3 Compute Cluster Reservation Wire</div>
+                <div style="font-size:0.75rem; color:#64748b;">Pre-validated against authorized 2026 AI compute pool reserve.</div>
+              </div>
+              <div style="display:flex; gap:0.5rem;">
+                <button onclick="dismiss('act-2', 'Wire release authorized.')" class="btn-action btn-success">Authorize Wire</button>
+                <button onclick="dismiss('act-2', 'Delegated to VP Finance.')" class="btn-action btn-secondary">Delegate VP</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. EMAIL HUB -->
+      <section id="email-hub" class="tab-view">
+        <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin-bottom:0.25rem;">Executive Email Hub</h2>
+        <div style="font-size:0.8rem; color:#64748b; margin-bottom:1.25rem;">Gmail & Outlook unified view with calibrated AI response studio.</div>
+
+        <div style="display:grid; grid-template-columns:300px 1fr; gap:1.25rem;">
+          <div style="display:flex; flex-direction:column; gap:0.5rem;">
+            <div class="card" onclick="loadMail(1)" style="cursor:pointer;">
+              <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:#64748b; font-weight:700;">
+                <span style="color:#fff;">David Sterling (Chair)</span>
+                <span>10:14 AM</span>
+              </div>
+              <div style="font-size:0.8rem; font-weight:600; color:#e2e8f0; margin-top:0.2rem;">Q4 Shareholder Meeting Agenda</div>
+              <div style="font-size:0.75rem; color:#64748b; margin-top:0.2rem;">Robin, are we presenting revised gross margin...</div>
+            </div>
+
+            <div class="card" onclick="loadMail(2)" style="cursor:pointer;">
+              <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:#64748b; font-weight:700;">
+                <span style="color:#fff;">Elena Rostova (Horizon)</span>
+                <span>08:42 AM</span>
+              </div>
+              <div style="font-size:0.8rem; font-weight:600; color:#e2e8f0; margin-top:0.2rem;">Series B Syndicate Allocation</div>
+              <div style="font-size:0.75rem; color:#64748b; margin-top:0.2rem;">Can you commit 15 mins this Thursday...</div>
+            </div>
+          </div>
+
+          <div class="card" style="display:flex; flex-direction:column; gap:0.85rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #1e293b; padding-bottom:0.5rem;">
+              <span style="font-size:0.85rem; font-weight:700; color:#fff;">Executive Reply Drafter</span>
+              <span style="font-size:0.7rem; color:#64748b;">OAuth Verified: Gmail & Outlook</span>
+            </div>
+
+            <input id="email-to" value="david.sterling@boardholdings.com — Re: Q4 Meeting">
+            <textarea id="email-body" rows="7">David,
+
 We will present the revised gross margin expectations directly in executive session, rather than the general deck. The audit team verified the 18% cost-of-goods contraction yesterday, and we want full board consensus prior to external guidance.
+
 My Chief of Staff has reserved 20 minutes before the opening gavel if you wish to align 1-on-1.
-Best regards,Robin K.</textarea>            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1e293b; padding-top: 0.75rem;">              <span style="font-size: 0.75rem; color: #64748b;">Dispatcher: <strong>Gmail Primary (OAuth Verified)</strong></span>              <button onclick="sendMailNow()" style="padding: 0.5rem 1.25rem; background: #2563eb; color: #fff; font-weight: 600; font-size: 0.8rem; border: none; border-radius: 0.375rem; cursor: pointer;">One-Touch Send</button>            </div>          </div>        </div>      </section>
-      <!-- 3. CALENDAR & ALARMS -->      <section id="calendar-hub" class="tab-section">        <h1 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">Calendar & Buffer Guardian</h1>        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Continuous Google & Outlook synchronization with automatic 45m reset protection.</p>
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">          <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">            <div style="display: flex; justify-content: space-between; align-items: center;">              <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">Cross-Synced Itinerary</span>              <span class="badge" style="background: rgba(16,185,129,0.1); color: #34d399;">Buffers Guaranteed</span>            </div>
-            <div style="background: #080c14; border: 1px solid #1e293b; border-radius: 0.5rem; padding: 0.85rem; display: flex; justify-content: space-between;">              <div>                <div style="font-size: 0.75rem; color: #ef4444; font-weight: 700;">09:30 AM — Google Calendar</div>                <div style="font-weight: 600; font-size: 0.85rem; color: #fff;">Global Exec Committee Alignment</div>              </div>              <span style="font-size: 0.75rem; color: #34d399; font-weight: 600;">Concluded</span>            </div>
-            <div style="background: rgba(217,119,6,0.06); border: 1px dashed rgba(217,119,6,0.3); border-radius: 0.5rem; padding: 0.75rem; display: flex; justify-content: space-between; align-items: center; color: #fbbf24; font-size: 0.8rem;">              <span> <strong>Milo Buffer Defense:</strong> 45-Minute Cognitive Travel & Prep Window</span>              <span style="font-family: monospace;">10:15 — 11:00 AM</span>            </div>
-            <div style="background: #080c14; border: 1px solid #1e293b; border-radius: 0.5rem; padding: 0.85rem; display: flex; justify-content: space-between;">              <div>                <div style="font-size: 0.75rem; color: #3b82f6; font-weight: 700;">11:00 AM — Outlook Calendar</div>                <div style="font-weight: 600; font-size: 0.85rem; color: #fff;">M&A Strategy Session: Project Titan</div>              </div>              <span style="font-size: 0.75rem; color: #60a5fa; font-weight: 600;">In 35 mins</span>            </div>          </div>
-          <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">            <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">Active Alarms & Paging</span>                        <div style="background: #080c14; border: 1px solid #1e293b; border-radius: 0.5rem; padding: 0.85rem;">              <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.8rem; color: #fff;">                <span>Pre-Titan Prep Chime</span>                <input type="checkbox" checked style="accent-color: #2563eb;">              </div>              <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.25rem;">15-min warning sound + WhatsApp dispatch.</div>              <div style="font-size: 0.7rem; color: #60a5fa; margin-top: 0.5rem; cursor: pointer;" onclick="playTone(523)">Preview Tone (523Hz)</div>            </div>
-            <div style="background: #080c14; border: 1px solid #1e293b; border-radius: 0.5rem; padding: 0.85rem;">              <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.8rem; color: #fff;">                <span>Market Close Recap</span>                <input type="checkbox" checked style="accent-color: #2563eb;">              </div>              <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.25rem;">Automated closing foreign exchange & treasury alert.</div>              <div style="font-size: 0.7rem; color: #60a5fa; margin-top: 0.5rem; cursor: pointer;" onclick="playTone(659)">Preview Tone (659Hz)</div>            </div>          </div>        </div>      </section>
-      <!-- 4. VOICE NOTES & CEO DIRECTIVES -->      <section id="voice-notes" class="tab-section">        <h1 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">Voice Brain-Dump & Directives</h1>        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Speak or dump thoughts freely. Milo converts them into formal CEO Directives assigned to your direct reports.</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">          <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">            <div style="display: flex; justify-content: center; padding: 1.5rem; background: #080c14; border: 1px dashed #1e293b; border-radius: 0.5rem;">              <button id="rec-btn" onclick="toggleVoice()" style="width: 56px; height: 56px; border-radius: 50%; background: #dc2626; color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">                              </button>            </div>            <div id="rec-text" style="font-size: 0.75rem; text-align: center; color: #64748b;">Click to record executive voice memo</div>
-            <div>              <label style="font-size: 0.75rem; color: #64748b; font-weight: 600; display: block; margin-bottom: 0.35rem;">Raw Brain-Dump Transcript</label>              <textarea id="raw-memo" rows="5" style="width: 100%; background: #080c14; border: 1px solid #1e293b; border-radius: 0.375rem; padding: 0.65rem; font-size: 0.8rem; color: #e2e8f0;">Need Marcus to deliver revised headcount forecasts before Thursday board meeting. Tell legal to hold firm on clause 9 of the Titan merger terms. And remind me to call David regarding our European expansion funding by Friday.</textarea>            </div>
-            <button onclick="synthesizeDirectives()" style="padding: 0.6rem; background: #2563eb; color: #fff; border: none; border-radius: 0.375rem; font-weight: 600; font-size: 0.8rem; cursor: pointer;">              Synthesize Into Formal Directives            </button>          </div>
-          <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">Extracted Company Directives</div>                        <div style="background: #080c14; border: 1px solid #1e293b; border-radius: 0.5rem; padding: 1rem; display: flex; justify-content: space-between; align-items: start;">              <div>                <span class="badge" style="background: rgba(59,130,246,0.15); color: #60a5fa;">Assigned: CFO (Marcus)</span>                <div style="font-weight: 600; font-size: 0.85rem; color: #fff; margin-top: 0.35rem;">Finalized Headcount & Run-Rate Deck</div>                <div style="font-size: 0.75rem; color: #ef4444; margin-top: 0.2rem;">Deadline: Thursday 02:00 PM</div>              </div>              <button onclick="this.innerText='Dispatched'; this.style.background='#059669';" style="padding: 0.35rem 0.75rem; background: #1e293b; color: #cbd5e1; border: none; border-radius: 0.25rem; font-size: 0.75rem; cursor: pointer;">Dispatch</button>            </div>
-            <div style="background: #080c14; border: 1px solid #1e293b; border-radius: 0.5rem; padding: 1rem; display: flex; justify-content: space-between; align-items: start;">              <div>                <span class="badge" style="background: rgba(168,85,247,0.15); color: #c084fc;">Assigned: Legal Counsel</span>                <div style="font-weight: 600; font-size: 0.85rem; color: #fff; margin-top: 0.35rem;">Hold Firm on Clause 9 (Titan Merger Terms)</div>                <div style="font-size: 0.75rem; color: #fbbf24; margin-top: 0.2rem;">Priority: Strict Zero-Concession</div>              </div>              <button onclick="this.innerText='Dispatched'; this.style.background='#059669';" style="padding: 0.35rem 0.75rem; background: #1e293b; color: #cbd5e1; border: none; border-radius: 0.25rem; font-size: 0.75rem; cursor: pointer;">Dispatch</button>            </div>          </div>        </div>      </section>
-      <!-- 5. CREATOR & BOARD STUDIO -->      <section id="creator-studio" class="tab-section">        <h1 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">Creator & Board Studio</h1>        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Draft LinkedIn executive thought leadership, Instagram carousel hooks, and quarterly Board Memos.</p>
-        <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">          <div style="display: flex; gap: 0.5rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.75rem;">            <button onclick="setStudioType(this, 'linkedin')" style="padding: 0.4rem 0.85rem; font-size: 0.75rem; border-radius: 0.375rem; background: #2563eb; color: #fff; border: none; cursor: pointer;">LinkedIn Post</button>            <button onclick="setStudioType(this, 'instagram')" style="padding: 0.4rem 0.85rem; font-size: 0.75rem; border-radius: 0.375rem; background: #1e293b; color: #94a3b8; border: none; cursor: pointer;">Instagram Carousel</button>            <button onclick="setStudioType(this, 'board')" style="padding: 0.4rem 0.85rem; font-size: 0.75rem; border-radius: 0.375rem; background: #1e293b; color: #94a3b8; border: none; cursor: pointer;">Board Memo</button>          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">            <div style="display: flex; flex-direction: column; gap: 1rem;">              <div>                <label style="font-size: 0.75rem; color: #64748b; font-weight: 600; display: block; margin-bottom: 0.35rem;">Topic / Executive Thesis</label>                <input id="studio-topic" style="width: 100%; background: #080c14; border: 1px solid #1e293b; border-radius: 0.375rem; padding: 0.5rem; font-size: 0.8rem; color: #fff;" value="Why enterprises over-index on headcount instead of autonomous operating leverage.">              </div>
-              <div>                <label style="font-size: 0.75rem; color: #64748b; font-weight: 600; display: block; margin-bottom: 0.35rem;">Audience Target</label>                <input id="studio-aud" style="width: 100%; background: #080c14; border: 1px solid #1e293b; border-radius: 0.375rem; padding: 0.5rem; font-size: 0.8rem; color: #fff;" value="Institutional Investors, C-Suite Leaders, Enterprise Founders">              </div>
-              <button onclick="generateCopy()" style="padding: 0.6rem; background: #2563eb; color: #fff; border: none; border-radius: 0.375rem; font-weight: 600; font-size: 0.8rem; cursor: pointer;">                Generate High-Stake Copy              </button>            </div>
-            <div>              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">                <label style="font-size: 0.75rem; color: #64748b; font-weight: 600;">Generated Output</label>                <button onclick="copyCopy()" style="font-size: 0.7rem; color: #60a5fa; background: none; border: none; cursor: pointer;"> Copy</button>              </div>              <textarea id="studio-res" rows="9" style="width: 100%; background: #080c14; border: 1px solid #1e293b; border-radius: 0.375rem; padding: 0.75rem; font-size: 0.8rem; color: #e2e8f0; line-height: 1.5;">Most enterprise balance sheets carry a silent, fatal tax:
+
+Best regards,
+Robin K.</textarea>
+            
+            <div style="display:flex; justify-content:flex-end;">
+              <button onclick="alert('Email dispatched via secure OAuth gateway.')" class="btn-action btn-primary">Dispatch Email</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. CALENDAR -->
+      <section id="calendar-hub" class="tab-view">
+        <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin-bottom:0.25rem;">Calendar & Buffer Defense</h2>
+        <div style="font-size:0.8rem; color:#64748b; margin-bottom:1.25rem;">Automated cognitive buffers inserted across all synchronized calendars.</div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap:0.75rem;">
+          <div style="background:#080c14; border:1px solid #1e293b; border-radius:6px; padding:0.85rem; display:flex; justify-content:space-between;">
+            <div>
+              <div style="font-size:0.7rem; color:#ef4444; font-weight:700;">09:30 AM — Google Calendar</div>
+              <div style="font-size:0.85rem; font-weight:700; color:#fff;">Global Executive Committee Alignment</div>
+            </div>
+            <span style="font-size:0.75rem; color:#34d399; font-weight:600;">Completed</span>
+          </div>
+
+          <div style="background:rgba(217,119,6,0.06); border:1px dashed rgba(217,119,6,0.3); border-radius:6px; padding:0.75rem; display:flex; justify-content:space-between; align-items:center; color:#fbbf24; font-size:0.75rem;">
+            <span>🛡️ <strong>Milo Buffer Defense:</strong> 45-Minute Cognitive Reset & Prep Window</span>
+            <span style="font-family:monospace;">10:15 — 11:00 AM</span>
+          </div>
+
+          <div style="background:#080c14; border:1px solid #1e293b; border-radius:6px; padding:0.85rem; display:flex; justify-content:space-between;">
+            <div>
+              <div style="font-size:0.7rem; color:#3b82f6; font-weight:700;">11:00 AM — Outlook Calendar</div>
+              <div style="font-size:0.85rem; font-weight:700; color:#fff;">Project Titan Strategy Session</div>
+            </div>
+            <span style="font-size:0.75rem; color:#60a5fa; font-weight:600;">In 30 mins</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. VOICE NOTES -->
+      <section id="voice-notes" class="tab-view">
+        <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin-bottom:0.25rem;">Voice Brain-Dump & CEO Directives</h2>
+        <div style="font-size:0.8rem; color:#64748b; margin-bottom:1.25rem;">Transform messy voice transcripts into structured, delegated assignments.</div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
+          <div class="card" style="display:flex; flex-direction:column; gap:0.75rem;">
+            <div style="font-size:0.8rem; font-weight:700; color:#fff;">Unstructured Audio Dump</div>
+            <textarea id="voice-txt" rows="6">Need Marcus to deliver revised headcount forecasts before Thursday board meeting. Tell legal to hold firm on clause 9 of the Titan merger terms. And remind me to call David regarding our European expansion funding by Friday.</textarea>
+            <button onclick="alert('Synthesized into structured directives.')" class="btn-action btn-primary">⚡ Synthesize Directives</button>
+          </div>
+
+          <div class="card" style="display:flex; flex-direction:column; gap:0.75rem;">
+            <div style="font-size:0.8rem; font-weight:700; color:#fff;">Formal Directives</div>
+            <div style="background:#080c14; border:1px solid #1e293b; border-radius:6px; padding:0.75rem;">
+              <span class="badge" style="background:rgba(37,99,235,0.15); color:#60a5fa; border:none;">Assigned: CFO</span>
+              <div style="font-weight:700; font-size:0.8rem; color:#fff; margin-top:0.25rem;">Headcount & Run-Rate Deck by Thursday 2 PM</div>
+            </div>
+            <div style="background:#080c14; border:1px solid #1e293b; border-radius:6px; padding:0.75rem;">
+              <span class="badge" style="background:rgba(168,85,247,0.15); color:#c084fc; border:none;">Assigned: Legal</span>
+              <div style="font-weight:700; font-size:0.8rem; color:#fff; margin-top:0.25rem;">Hold Firm on Clause 9 (Titan Merger Terms)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. CREATOR STUDIO -->
+      <section id="creator-studio" class="tab-view">
+        <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin-bottom:0.25rem;">Creator & Board Studio</h2>
+        <div style="font-size:0.8rem; color:#64748b; margin-bottom:1.25rem;">Executive thought leadership and shareholder updates.</div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap:0.75rem;">
+          <input value="Why enterprises over-index on raw headcount instead of autonomous operating leverage.">
+          <textarea rows="6">Most enterprise balance sheets carry a silent, fatal tax:
+
 Valuing organizational scale by raw headcount rather than autonomous operating leverage.
-Over the past two quarters, our executive operations proved a crucial hypothesis:1. Routine inbox triage, calendar buffer defense, and compliance routing should never consume executive cognitive cycles.2. When your leadership team operates with an autonomous Chief of Staff AI, decision velocity increases by 4.2x.
-If you are expanding your payroll before upgrading your autonomous workflows, you are paying compound interest on organizational friction.
-What is your team’s ratio of manual coordination vs. autonomous execution this quarter?
-#EnterpriseLeadership #ExecutiveStrategy #Operations #ArtificialIntelligence</textarea>            </div>          </div>        </div>      </section>
-      <!-- 6. WHATSAPP & INTEGRATIONS -->      <section id="integrations" class="tab-section">        <h1 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">WhatsApp & Cloud Integrations</h1>        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem;">Connect your personal mobile device and live cloud infrastructure.</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">          <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">            <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">WhatsApp Mobile Gateway</span>                        <div>              <label style="font-size: 0.75rem; color: #64748b; display: block; margin-bottom: 0.35rem;">Managing Director Phone Number</label>              <input value="+1 (555) 942-8821" style="width: 100%; background: #080c14; border: 1px solid #1e293b; border-radius: 0.375rem; padding: 0.5rem; font-size: 0.8rem; color: #fff;">            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; background: #080c14; padding: 0.75rem; border-radius: 0.375rem; border: 1px solid #1e293b; font-size: 0.8rem;">              <span>VIP Decision Paging</span>              <input type="checkbox" checked style="accent-color: #059669;">            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; background: #080c14; padding: 0.75rem; border-radius: 0.375rem; border: 1px solid #1e293b; font-size: 0.8rem;">              <span>Buffer Reset Chime Alerts</span>              <input type="checkbox" checked style="accent-color: #059669;">            </div>
-            <button onclick="pingWhatsApp()" style="padding: 0.6rem; background: #059669; color: #fff; border: none; border-radius: 0.375rem; font-weight: 600; font-size: 0.8rem; cursor: pointer;">              Send Test WhatsApp Action Card            </button>          </div>
-          <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">            <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">Active Service Connections</span>
-            <div style="display: flex; justify-content: space-between; align-items: center; background: #080c14; padding: 0.85rem; border-radius: 0.375rem; border: 1px solid #1e293b;">              <div>                <div style="font-weight: 600; font-size: 0.85rem; color: #fff;">Google Workspace</div>                <div style="font-size: 0.7rem; color: #64748b;">Gmail API & Google Calendar</div>              </div>              <span class="badge" style="background: rgba(16,185,129,0.15); color: #34d399;">Connected</span>            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; background: #080c14; padding: 0.85rem; border-radius: 0.375rem; border: 1px solid #1e293b;">              <div>                <div style="font-weight: 600; font-size: 0.85rem; color: #fff;">Microsoft 365</div>                <div style="font-size: 0.7rem; color: #64748b;">Outlook Mail & Microsoft Graph API</div>              </div>              <span class="badge" style="background: rgba(16,185,129,0.15); color: #34d399;">Connected</span>            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; background: #080c14; padding: 0.85rem; border-radius: 0.375rem; border: 1px solid #1e293b;">              <div>                <div style="font-weight: 600; font-size: 0.85rem; color: #fff;">Twilio Messaging Gateway</div>                <div style="font-size: 0.7rem; color: #64748b;">WhatsApp Sandbox & SMS Carrier</div>              </div>              <span class="badge" style="background: rgba(16,185,129,0.15); color: #34d399;">Live</span>            </div>          </div>        </div>      </section>
-    </div>  </main>
-  <script>    function showTab(id, btn) {      document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));      document.getElementById(id).classList.add('active');      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));      btn.classList.add('active');      lucide.createIcons();    }
-    function playTone(freq) {      try {        const ctx = new (window.AudioContext || window.webkitAudioContext)();        const osc = ctx.createOscillator();        const gain = ctx.createGain();        osc.frequency.setValueAtTime(freq, ctx.currentTime);        gain.gain.setValueAtTime(0.15, ctx.currentTime);        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.3);        osc.connect(gain);        gain.connect(ctx.destination);        osc.start();        osc.stop(ctx.currentTime + 0.3);      } catch (e) {}    }
-    function resolveAction(id, note) {      const el = document.getElementById(id);      el.style.opacity = '0.3';      el.style.pointerEvents = 'none';      playTone(880);      alert(note);    }
-    function loadEmail(n) {      const recip = document.getElementById('email-recip');      const content = document.getElementById('email-content');      if (n === 1) {        recip.value = "david.sterling@boardholdings.com — Re: Preliminary Agenda Q4";        content.value = "David,\n\nWe will present the revised gross margin expectations directly in executive session, rather than the general deck. The audit team verified the 18% cost-of-goods contraction yesterday.\n\nBest,\nRobin K.";      } else {        recip.value = "elena.rostova@horizonvc.com — Re: Series B Syndicate Allocation";        content.value = "Elena,\n\nOur mandate requires pro-rata rights on the Series C round. If Horizon can memorialize that clause, my office will block 15 minutes this Thursday.\n\nBest regards,\nRobin K.";      }    }
-    function setTone(btn) {      btn.parentElement.querySelectorAll('button').forEach(b => {        b.style.background = '#1e293b';        b.style.color = '#94a3b8';      });      btn.style.background = '#2563eb';      btn.style.color = '#fff';    }
-    function sendMailNow() {      playTone(660);      alert("Email dispatched securely through connected OAuth provider.");    }
-    let recording = false;    function toggleVoice() {      const btn = document.getElementById('rec-btn');      const text = document.getElementById('rec-text');      recording = !recording;      if (recording) {        btn.style.background = '#991b1b';        text.innerText = "Recording Managing Director Memo... Speak clearly.";        playTone(440);      } else {        btn.style.background = '#dc2626';        text.innerText = "Voice captured. Ready to synthesize into directives.";        playTone(880);      }    }
-    function synthesizeDirectives() {      alert("Voice memo converted into assigned directives for CFO and Legal Counsel.");    }
-    function setStudioType(btn, type) {      btn.parentElement.querySelectorAll('button').forEach(b => {        b.style.background = '#1e293b';        b.style.color = '#94a3b8';      });      btn.style.background = '#2563eb';      btn.style.color = '#fff';    }
-    function generateCopy() {      alert("High-stake copy generated with executive formatting.");    }
-    function copyCopy() {      navigator.clipboard.writeText(document.getElementById('studio-res').value);      alert("Copied to clipboard.");    }
-    function pingWhatsApp() {      playTone(900);      alert("Test WhatsApp card pushed to your mobile device.");    }
-    window.addEventListener('DOMContentLoaded', () => {      lucide.createIcons();    });  </script></body></html>
+
+When your leadership team operates with an autonomous Chief of Staff AI, decision velocity increases by 4.2x.
+
+#EnterpriseLeadership #ExecutiveStrategy #Operations #ArtificialIntelligence</textarea>
+          <div style="display:flex; justify-content:flex-end;">
+            <button onclick="alert('Copied to clipboard.')" class="btn-action btn-primary">Copy Output</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. WHATSAPP & INTEGRATIONS -->
+      <section id="integrations" class="tab-view">
+        <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin-bottom:0.25rem;">WhatsApp & Cloud Integrations</h2>
+        <div style="font-size:0.8rem; color:#64748b; margin-bottom:1.25rem;">Mobile gateway and communication endpoints.</div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap:0.75rem; max-width:500px;">
+          <div>
+            <label style="font-size:0.75rem; color:#64748b; font-weight:600; display:block; margin-bottom:0.25rem;">Executive Mobile Number</label>
+            <input value="+1 (555) 942-8821">
+          </div>
+          <button onclick="alert('Test WhatsApp action card sent to your device.'); playChime();" class="btn-action btn-success">Send Test WhatsApp Ping</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    function tab(id, btn) {
+      document.querySelectorAll('.tab-view').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function dismiss(id, msg) {
+      const el = document.getElementById(id);
+      el.style.opacity = '0.3';
+      el.style.pointerEvents = 'none';
+      playChime();
+      alert(msg);
+    }
+
+    function loadMail(id) {
+      const to = document.getElementById('email-to');
+      const b = document.getElementById('email-body');
+      if (id === 1) {
+        to.value = "david.sterling@boardholdings.com — Re: Q4 Meeting";
+        b.value = "David,\n\nWe will present the revised gross margin expectations directly in executive session. The audit team verified the 18% cost contraction yesterday.\n\nBest,\nRobin K.";
+      } else {
+        to.value = "elena.rostova@horizon.com — Re: Syndicate Terms";
+        b.value = "Elena,\n\nOur mandate requires pro-rata rights on the Series C round. If Horizon can memorialize that, we can block 15 minutes.\n\nBest,\nRobin K.";
+      }
+    }
+
+    function playChime() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.3);
+      } catch (e) {}
+    }
+  </script>
+</body>
+</html>
